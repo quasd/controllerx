@@ -8,6 +8,7 @@ from cx_core.controller import action
 from cx_core.feature_support.light import LightSupport
 from cx_core.integration import EventData
 from cx_core.integration.deconz import DeCONZIntegration
+from cx_core.integration.mqtt import MQTTIntegration
 from cx_core.integration.z2m import Z2MIntegration
 from cx_core.release_hold_controller import ReleaseHoldController
 from cx_core.stepper import MinMax, Stepper
@@ -554,7 +555,9 @@ class LightController(TypeController[LightEntity], ReleaseHoldController):
         if extra is None:
             self.log("No event data present", level="WARNING")
             return
-        if isinstance(self.integration, Z2MIntegration):
+        if isinstance(self.integration, Z2MIntegration) or isinstance(
+            self.integration, MQTTIntegration
+        ):
             if "action_color" not in extra:
                 self.log(
                     "`action_color` is not present in the MQTT payload", level="WARNING"
@@ -575,7 +578,9 @@ class LightController(TypeController[LightEntity], ReleaseHoldController):
         if extra is None:
             self.log("No event data present", level="WARNING")
             return
-        if isinstance(self.integration, Z2MIntegration):
+        if isinstance(self.integration, Z2MIntegration) or isinstance(
+            self.integration, MQTTIntegration
+        ):
             if "action_color_temperature" not in extra:
                 self.log(
                     "`action_color_temperature` is not present in the MQTT payload",
