@@ -24,7 +24,7 @@ class MQTTIntegration(Integration):
         if "payload" not in data:
             return
         if len(data["payload"]) == 0:
-            self.controller.log(f"Empty payload", level="DEBUG")
+            self.controller.log("Empty payload", level="DEBUG")
             return
         else:
             try:
