@@ -69,3 +69,15 @@ class ZB3009LightController(LightController):
             # "recall_3": "",  # Scene 2
             # "recall_2": "",  # Scene 3
         }
+
+
+class ROB2000160RGBLightController(LightController):
+    def get_z2m_actions_mapping(self) -> DefaultActionsMapping:
+        return {
+            "on": Light.TOGGLE,
+            "off": Light.TOGGLE,
+            "brightness_step_up": Light.CLICK_BRIGHTNESS_UP,
+            "brightness_step_down": Light.CLICK_BRIGHTNESS_DOWN,
+            "color_temperature_move": Light.COLORTEMP_FROM_CONTROLLER,
+            "color_move": Light.XYCOLOR_FROM_CONTROLLER,
+        }
