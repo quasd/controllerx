@@ -30,7 +30,9 @@ class MQTTIntegration(Integration):
             try:
                 payload = json.loads(data["payload"])
             except json.decoder.JSONDecodeError:
-                raise ValueError(f"Following payload is not a valid JSON: {data["payload"]}")
+                raise ValueError(
+                    f"Following payload is not a valid JSON: {data['payload']}"
+                )
         action_key: str
         if payload_key is None:
             action_key = payload
